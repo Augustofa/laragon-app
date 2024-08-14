@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('places_list_items', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('list_id')->constrained('places_list')->onDelete('cascade');
+            $table->foreignId('place_id')->constrained('places')->onDelete('cascade');
+            $table->integer('order');
         });
     }
 

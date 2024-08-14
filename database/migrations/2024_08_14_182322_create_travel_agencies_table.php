@@ -14,6 +14,10 @@ return new class extends Migration
         Schema::create('travel_agencies', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->string('name');
+            $table->text('description');
+            $table->string('contact_info');
+            $table->string('logo_image_path')->nullable();
         });
     }
 

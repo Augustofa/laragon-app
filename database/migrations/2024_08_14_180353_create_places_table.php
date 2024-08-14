@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('places', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('author_id')->constrained('users');
             $table->decimal('latitude', 10, 6);
             $table->decimal('longitude', 10, 6);
             $table->string('name');
-            $table->string('city-state');
+            $table->string('location');
+            $table->string('image_path');
         });
     }
 

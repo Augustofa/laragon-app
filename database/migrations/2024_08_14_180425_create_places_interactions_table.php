@@ -14,6 +14,14 @@ return new class extends Migration
         Schema::create('places_interactions', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('place_id')->constrained('places')->onDelete('cascade');  
+
+            $table->string('interaction_type');
+
+            $table->text('content')->nullable();
+            $table->string('image_path')->nullable();
+            $table->integer('rating')->nullable();
         });
     }
 
