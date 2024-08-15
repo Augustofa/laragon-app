@@ -8,4 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Place extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'latitude',
+        'longitude',
+        'name',
+        'location',
+        'image_path',
+        'description',
+    ];
 }

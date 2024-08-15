@@ -3,15 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Place;
 
 class PlaceController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Place $place)
     {
-        //
+        $places = $place->all();
+        return view('place.index', compact('places'));
     }
 
     /**
