@@ -7,6 +7,16 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav mr-auto">
+                <li class="dropdown @if (str_contains(Route::current()->getName(), 'places')) active @endif">
+                    <a class="nav-link dropdown-toggle" href={{ route('places.index') }} id="navbarDropdown"
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Lugares
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href={{ route('places.index') }}>Listar</a>
+                        <a class="dropdown-item" href={{ route('places.create') }}>Cadastrar</a>
+                    </div>
+                </li>
                 <li class="dropdown @if (str_contains(Route::current()->getName(), 'products')) active @endif">
                     <a class="nav-link dropdown-toggle" href={{ route('products.index') }} id="navbarDropdown"
                         role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

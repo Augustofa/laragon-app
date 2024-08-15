@@ -21,7 +21,7 @@ class PlaceController extends Controller
      */
     public function create()
     {
-        //
+        return view('product.create');
     }
 
     /**

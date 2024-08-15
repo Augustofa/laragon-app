@@ -1,6 +1,15 @@
 @extends('layouts.master')
 
 @section('content')
+    <div id="map" style="width: 400px; height: 400px; margin: auto"></div>
+    
+    <script>
+        window.addEventListener('DOMContentLoaded', (event) => {
+            // createMarker(-20.231800, -46.445800);
+            addMarkerList()
+        });
+    </script>
+
     <div class="container">
         <h1>Listagem de Lugar</h1>
         <table class="table table-striped">
@@ -15,6 +24,7 @@
             </thead>
             <tbody>
                 @foreach ($places as $place)
+                    <div class="coord" data-lat="{{ $place->latitude }}" data-lng="{{ $place->longitude }}"></div>
                     <tr>
                         <td scope="row">{{ $place->latitude . ', ' . $place->longitude }}</td>
                         <td scope="row">{{ $place->name }}</td>
