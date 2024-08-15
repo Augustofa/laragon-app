@@ -9,6 +9,7 @@ class Place extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'author_id',
         'latitude',
         'longitude',
         'name',
