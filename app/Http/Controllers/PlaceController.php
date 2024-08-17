@@ -21,7 +21,7 @@ class PlaceController extends Controller
      */
     public function create()
     {
-        return view('product.create');
+        return view('place.create');
     }
 
     /**
@@ -29,7 +29,8 @@ class PlaceController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $pd = Place::create($request->validated());
+        return redirect()->route('places.index');
     }
 
     /**
@@ -37,7 +38,12 @@ class PlaceController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $place = Place::find((int)$id);
+        if(!isset($place)){
+            return back();
+        }
+
+        return view('place.show', compact('place'));
     }
 
     /**
