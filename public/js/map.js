@@ -8,7 +8,6 @@ function initMap() {
 }
 
 function createMarker(place) {
-    console.log(place.latitude, place.longitude);
     var marker = new google.maps.Marker({
         position: {
             lat: parseFloat(place.latitude),
@@ -16,8 +15,7 @@ function createMarker(place) {
         },
         map: map,
     });
-    
-    
+
     var request = {
         location: new google.maps.LatLng(
             parseFloat(place.latitude),
@@ -25,14 +23,14 @@ function createMarker(place) {
         ),
         radius: 1000,
     };
-    
+
     const infowindow = new google.maps.InfoWindow();
     var service = new google.maps.places.PlacesService(map);
-    
+
     service.nearbySearch(request, (results, status) => {
         if (status === google.maps.places.PlacesServiceStatus.OK) {
             const placeId = results[0].place_id;
-            
+
             const requestDetails = {
                 placeId: placeId,
                 fields: [
@@ -44,7 +42,7 @@ function createMarker(place) {
             };
 
             console.log(results);
-            
+
             google.maps.event.addListener(marker, "click", function () {
                 service.getDetails(requestDetails, (foundPlace, status) => {
                     if (
@@ -75,6 +73,8 @@ function createMarker(place) {
     });
 
     centerMap(place.latitude, place.longitude);
+
+    return marker;
 }
 
 function addMarkerList() {
@@ -87,7 +87,7 @@ function addMarkerList() {
         place = {
             latitude: latitude,
             longitude: longitude,
-        }
+        };
         createMarker(place);
     });
 }
@@ -104,34 +104,84 @@ function zoomMap(zoom) {
     map.setZoom(parseInt(zoom));
 }
 
+function listenForUserSelectedMarker() {
+    google.maps.event.addListener(map, "click", function (event) {
+        alert(
+            "Latitude: " +
+                event.latLng.lat() +
+                " " +
+                ", longitude: " +
+                event.latLng.lng()
+        );
+
+        var myLatlng = new google.maps.LatLng(
+            event.latLng.lat(),
+            event.latLng.lng()
+        );
+
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: "Hello World!",
+        });
+    });
+}
+
 function centerMapOnUserPosition() {
     if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            function(position) {
-                console.log("Pos:", position.coords.latitude, position.coords.longitude);
-                centerMap(
-                    position.coords.latitude,
-                    position.coords.longitude,
-                    { enableHighAccuracy: true, timeout:  
-                        5000, maximumAge: 0 }
-                );
-            },
-            errorCallback
-        );
+        navigator.geolocation.getCurrentPosition(function (position) {
+            console.log(
+                "Pos:",
+                position.coords.latitude,
+                position.coords.longitude
+            );
+            centerMap(position.coords.latitude, position.coords.longitude, {
+                enableHighAccuracy: true,
+                timeout: 5000,
+                maximumAge: 0,
+            });
+        }, errorCallback);
     } else {
         console.log("Geolocation is not supported by this browser.");
     }
 }
 
 function createDraggableMarker() {
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(
-            successCallback,
-            errorCallback
-        );
-    } else {
-        console.log("Geolocation is not supported by this browser.");
+    const temp = async () => {
+        const { Map } = await google.maps.importLibrary("maps");
+        const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
     }
+
+    temp();
+    
+    centerMapOnUserPosition();
+    centerPos = map.getCenter();
+    
+    map = new google.maps.Map(document.getElementById("map"));
+    const infoWindow = new google.maps.InfoWindow();
+
+    var draggableMarker = new google.maps.Marker({
+        map: map,
+        draggable: true,
+        animation: google.maps.Animation.DROP,
+        position: {
+            lat: parseFloat(centerPos.lat()),
+            lng: parseFloat(centerPos.lng()),
+        },
+    });
+
+    draggableMarker.addListener("dragend", (event) => {
+        const position = draggableMarker.position;
+
+        infoWindow.close();
+        infoWindow.setContent(
+            `Coordenadas: ${position.lat()}, ${position.lng()}`
+        );
+        infoWindow.open(draggableMarker.map, draggableMarker);
+
+        document.getElementById("latitude").value = position.lat();
+        document.getElementById("longitude").value = position.lng();
+    });
 }
 
 function successCallback(position) {
@@ -157,6 +207,6 @@ function successCallback(position) {
 
 function errorCallback(error) {
     console.error("Error getting location:", error);
-    centerMap(0,0);
+    centerMap(0, 0);
     map.setZoom(1);
 }

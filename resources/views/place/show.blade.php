@@ -18,6 +18,7 @@
             <img src="{{ Storage::url($place->image_path)  }}" alt="{{ $place->name }}" class="img-fluid">
             <h1>{{ $place->name }}</h1>
             <p class="lead">{{ $place->sub_title }}</p>
+            <p>Autor: {{ $username }}</p>
             <p>{{ $place->description }}</p>
         </div>
         <div class="col-md-4">

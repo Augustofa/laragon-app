@@ -9,6 +9,7 @@
             window.addEventListener('DOMContentLoaded', (event) => {
                 createMarker(jsonPlace);
             });
+            
         </script>
 
         <form action="{{ route('places.update', $place->id) }}" method="post"  enctype="multipart/form-data">

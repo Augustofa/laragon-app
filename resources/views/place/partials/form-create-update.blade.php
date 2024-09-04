@@ -17,20 +17,18 @@
     </div>
 </div>
 
-
-<div class="form-group row">
+<!-- <div class="form-group row">
     <label for="author" class="col-sm-2 col-form-label">ID Autor: </label>
     <div class="col-sm-5">
         <input type="text" class="form-control" id="author_id" name="author_id"
             @if (isset($place->author_id)) value='{{ $place->author_id }}' @endif>
     </div>
-</div>
-
+</div> -->
 
 <div class="form-group row">
-    <script src="{{ asset('js/map.js') }}">
+    <!-- <script src="{{ asset('js/map.js') }}">
         createDraggableMarker();
-    </script>
+    </script> -->
     <label class="col-sm-2 col-form-label align-middle" for="location">Localização:</label>
     <div class="col-sm-5">
         <input type="text" class="form-control" id="location" name="location"
@@ -52,14 +50,14 @@
 <div class="form-group row">
     <label for="latitude" class="col-sm-2 col-form-label">Latitude: </label>
     <div class="col-sm-2">
-        <input type="text" class="form-control" id="latitude" name="latitude"
+        <input type="text" class="form-control" id="latitude" name="latitude" readonly
             @if (isset($place->latitude)) value='{{ $place->latitude }}' @endif>
     </div>
 </div>
 <div class="form-group row">
     <label for="longitude" class="col-sm-2 col-form-label">Longitude: </label>
     <div class="col-sm-2">
-        <input type="text" class="form-control" id="longitude" name="longitude"
+        <input type="text" class="form-control" id="longitude" name="longitude" readonly
             @if (isset($place->longitude)) value='{{ $place->longitude }}' @endif>
     </div>
 </div>

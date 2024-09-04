@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdatePlaceRequest;
 use Illuminate\Http\Request;
 use App\Models\Place;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class PlaceController extends Controller
@@ -52,7 +53,7 @@ class PlaceController extends Controller
         // $place = Place::create($request->validated());
 
         $place = new Place();
-        $place->author_id = $request->author_id;
+        $place->author_id = Auth::id();
         $place->latitude = $request->latitude;
         $place->longitude = $request->longitude;
         $place->name = $request->name;
@@ -60,7 +61,6 @@ class PlaceController extends Controller
         $place->image_path = $image;
         $place->description = $request->description;
         $place->save();
-        
 
         return redirect()->route('places.index');
     }
@@ -75,7 +75,9 @@ class PlaceController extends Controller
             return back();
         }
 
-        return view('place.show', compact('place'));
+        $username = User::find($place->author_id)->name;
+
+        return view('place.show', compact('place', 'username'));
     }
 
     /**
@@ -109,7 +111,7 @@ class PlaceController extends Controller
             $newPlace->image_path = $oldPlace->image_path;
         }
            
-        $newPlace->author_id = $request->author_id;
+        $newPlace->author_id = Auth::id();
         $newPlace->latitude = $request->latitude;
         $newPlace->longitude = $request->longitude;
         $newPlace->name = $request->name;
