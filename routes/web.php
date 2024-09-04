@@ -28,9 +28,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/', function () {
         return view('welcome');
     });
-    Route::resource('/category', CategoryController::class)->middleware('role:Administrator');
-    Route::resource('/order', OrderController::class)->middleware('role:Administrator');
-    Route::resource('/products', ProductController::class)->middleware('role:Administrator|Manager');
     Route::resource('/places', PlaceController::class)->middleware('role:Administrator|Manager');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -17,42 +17,6 @@
                         <a class="dropdown-item" href={{ route('places.create') }}>Cadastrar</a>
                     </div>
                 </li>
-                <!-- <li class="dropdown @if (str_contains(Route::current()->getName(), 'products')) active @endif">
-                    <a class="nav-link dropdown-toggle" href={{ route('products.index') }} id="navbarDropdown"
-                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        Produtos
-                    </a>
-                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <a class="dropdown-item" href={{ route('products.index') }}>Listar</a>
-                        <a class="dropdown-item" href={{ route('products.create') }}>Cadastrar</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">Something else here</a>
-                    </div>
-                </li> 
-                @if(Auth::user()->hasRole('Administrator'))
-                    <li class="dropdown @if (str_contains(Route::current()->getName(), 'category')) active @endif">
-                        <a class="nav-link dropdown-toggle" href={{ route('category.index') }} id="navbarDropdown"
-                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Categoria
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href={{ route('category.index') }}>Listar</a>
-                            <a class="dropdown-item" href={{ route('category.create') }}>Cadastrar</a>
-                        </div>
-                    </li>
-                @endif
-                @if(Auth::user()->hasRole('Administrator'))
-                    <li class="dropdown @if (str_contains(Route::current()->getName(), 'order')) active @endif">
-                        <a class="nav-link dropdown-toggle" href={{ route('order.index') }} id="navbarDropdown"
-                            role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Pedidos
-                        </a>
-                        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href={{ route('order.index') }}>Listar</a>
-                            <a class="dropdown-item" href={{ route('order.create') }}>Cadastrar</a>
-                        </div>
-                    </li>
-                @endif -->
             </ul>
             <div class="">
                 <ul class="navbar-nav mr-auto">
