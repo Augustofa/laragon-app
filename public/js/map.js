@@ -100,6 +100,10 @@ function centerMap(latitude, longitude) {
     map.setCenter(center);
 }
 
+function zoomMap(zoom) {
+    map.setZoom(parseInt(zoom));
+}
+
 function centerMapOnUserPosition() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(

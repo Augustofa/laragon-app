@@ -25,5 +25,11 @@
             <div id="map" style="width: 400px; height: 400px; margin: auto"></div>
         </div>
     </div>
+    <form action="{{ route('places.destroy', $place->id) }}" method="post">
+        @csrf
+        @method('DELETE')
+        <button type="submit" class="btn btn-danger">Excluir</button>
+        <a href="{{ URL::previous() }}" class="ml-3 btn btn-primary"> Voltar </a>
+    </form>
 </div>
 @endsection

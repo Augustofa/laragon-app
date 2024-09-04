@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\UpdatePlaceRequest;
 use Illuminate\Http\Request;
 use App\Models\Place;
+use Illuminate\Support\Facades\Auth;
 
 class PlaceController extends Controller
 {
@@ -124,6 +125,13 @@ class PlaceController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $place = Place::find((int)$id);
+        if(!isset($place)){
+            return back();
+        }
+
+
+        $place->delete();
+        return redirect()->route('places.index');
     }
 }

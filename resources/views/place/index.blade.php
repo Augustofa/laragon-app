@@ -1,7 +1,9 @@
 @extends('layouts.master')
 
 @section('content')
-    <div id="map" style="width: 400px; height: 400px; margin: auto"></div>
+    <div class="col-sm-8" style="height: 50vh; margin: auto;">
+        <div id="map" class="w-100 h-100 justify-center"></div>
+    </div>
     
     <script>
         window.addEventListener('DOMContentLoaded', (event) => {
@@ -12,7 +14,7 @@
     </script>
 
     <div class="container">
-        <h1>Listagem de Lugar</h1>
+        <h1>Listagem de Lugares</h1>
         <table class="table table-striped">
             <thead>
                 <tr>
@@ -35,9 +37,6 @@
                         <td scope="row"><a href="{{ route('places.show', $place->id) }}"> Mostrar </td>
                         @can('place-edit')
                             <td scope="row"><a href="{{ route('places.edit', $place->id) }}"> Editar </td>
-                        @endcan
-                        @can('place-destroy')
-                            <td scope="row"><a href="{{ route('places.destroy', $place->id) }}"> Excluir </td>
                         @endcan
                     </tr>
                 @endforeach
