@@ -8,6 +8,7 @@
             // createMarker(-20.231800, -46.445800);
             addMarkerList()
         });
+        centerMapOnUserPosition();
     </script>
 
     <div class="container">
@@ -29,11 +30,14 @@
                         <td scope="row">{{ $place->latitude . ', ' . $place->longitude }}</td>
                         <td scope="row">{{ $place->name }}</td>
                         <td scope="row">{{ $place->location }}</td>
-                        <td scope="row"><img src="{{ Storage::url('images/places/' . $place->image_path) }}" alt="{{ $place->name }}" class="image-table" width="100px"></td>
+                        <td scope="row"><img src="{{ Storage::url($place->image_path) }}" alt="{{ $place->name }}" class="image-table" width="100px"></td>
                         <td scope="row">{{ $place->description }}</td>
-                        <td scope="row"><a href="{{ route('places.show', $place->id) }}"> Mostrar</td>
+                        <td scope="row"><a href="{{ route('places.show', $place->id) }}"> Mostrar </td>
                         @can('place-edit')
-                            <td scope="row"><a href="{{ route('places.edit', $place->id) }}"> Editar</td>
+                            <td scope="row"><a href="{{ route('places.edit', $place->id) }}"> Editar </td>
+                        @endcan
+                        @can('place-destroy')
+                            <td scope="row"><a href="{{ route('places.destroy', $place->id) }}"> Excluir </td>
                         @endcan
                     </tr>
                 @endforeach

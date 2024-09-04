@@ -2,10 +2,10 @@
 
 @section('content')
     <div class="container">
-        <h1>Cadastro de Produto</h1>
-        <form role="form" class="mt-5" action="{{ route('products.store') }}" method="post">
+        <h1>Cadastro de Lugar</h1>
+        <form role="form" class="mt-5" action="{{ route('places.store') }}" method="post" enctype="multipart/form-data">
             @csrf()
-            @include('product.partials.form-create-update')
+            @include('place.partials.form-create-update')
         </form>
     </div>
 @endsection

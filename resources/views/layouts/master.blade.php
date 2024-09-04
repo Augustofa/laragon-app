@@ -11,7 +11,7 @@
         <div id="main" class="row">
             @yield('content')
         </div>
-        <div class="row">
+        <div class="row" style="position:absolute; bottom:0">
             @include('layouts.partials.footer')
         </div>
     </div>
